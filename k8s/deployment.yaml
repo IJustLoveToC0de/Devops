@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-sandbox
+  labels:
+    app: devops-sandbox
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-sandbox
+  template:
+    metadata:
+      labels:
+        app: devops-sandbox
+    spec:
+      containers:
+      - name: web
+        image: your-registry/devops-sandbox:latest
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: APP_NAME
+          value: "DevOps Sandbox"
+        - name: VERSION
+          value: "1.0.0"
+        - name: ENVIRONMENT
+          value: "production"
+        - name: PORT
+          value: "5000"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
