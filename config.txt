@@ -1,1 +1,1 @@
-greeting=Yoo
+greeting=Hi
