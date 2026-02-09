@@ -8,6 +8,10 @@ terraform {
     }
   }
   
+  resource "null_resource" "example" {
+  triggers = {
+    message = "broken"
+
   # Uncomment to use remote state
   # backend "s3" {
   #   bucket = "your-terraform-state-bucket"
