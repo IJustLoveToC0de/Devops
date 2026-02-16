@@ -1,5 +1,4 @@
-resource "null_resource" "example" {
-  triggers = {
-    message = "iac is alive"
-  }
+resource "azurerm_resource_group" "rg" {
+  name     = "rg-devops-training-ci"
+  location = "westeurope"
 }
