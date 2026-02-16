@@ -1,10 +1,5 @@
 name: IaC CI
 
-permissions:
-  contents: read
-  pull-requests: write
-  issues: write
-
 on:
   pull_request:
   push:
